@@ -1,6 +1,7 @@
 #ifndef PENDULUMSCENE_H
 #define PENDULUMSCENE_H
 
+#include <memory>
 #include <QGraphicsScene>
 
 class PendulumGraphicsItem;
@@ -11,6 +12,7 @@ class PendulumScene : public QGraphicsScene
     Q_OBJECT
 public:
     PendulumScene(QObject *parent);
+    void mousePressEvent(QGraphicsSceneMouseEvent *mouseEvent);
 public slots:
     void onUpdate();
 private:
@@ -31,9 +33,9 @@ private:
     PendulumGraphicsItem *pendulum12;
     ToQtCoordinates *toQtCoordinates;
 
-    double PI = 3.141592;
-    double initialTetha = 30*PI/180;
-    double altura = 400;
+    const double PI = 3.141592;
+
+    double altura = 600;
     double g = 9.8182;
 
     double L1 = 300;
@@ -48,22 +50,6 @@ private:
     double L10 = 120;
     double L11 = 100;
     double L12 = 80;
-
-//    double w1 = sqrt(g/(L1/100));
-//    double w2 = sqrt(g/(L2/100));
-//    double w3 = sqrt(g/(L3/100));
-
-//    double w4 = sqrt(g/(L4/100));
-//    double w5 = sqrt(g/(L5/100));
-//    double w6 = sqrt(g/(L6/100));
-
-//    double w7 = sqrt(g/(L7/100));
-//    double w8 = sqrt(g/(L8/100));
-//    double w9 = sqrt(g/(L9/100));
-
-//    double w10 = sqrt(g/(L10/100));
-//    double w11 = sqrt(g/(L11/100));
-//    double w12 = sqrt(g/(L12/100));
 
     double w1 = 2*PI/3;
     double w2 = 2*PI/2.95;
@@ -81,7 +67,15 @@ private:
     double w11 = 2*PI/2.5;
     double w12 = 2*PI/2.45;
 
+    //variables
+
+    std::vector<double> vectorOfLengths;
+    std::vector<double> vectorOfOmegas;
+
+    double initialTetha = 30*PI/180;
     double t = 0; //timeInMiliseconds
+
+    std::shared_ptr<PendulumGraphicsItem> vectorOfPendulums;
 
 };
 

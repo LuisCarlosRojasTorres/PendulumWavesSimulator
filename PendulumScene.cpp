@@ -3,25 +3,38 @@
 #include "ToQtCoordinates.h"
 
 #include <iostream>
+#include <QGraphicsSceneMouseEvent>
 
 #define XPOS 0.0
 #define YPOS 0.0
-#define WIDTH 500
-#define HEIGHT 500
+#define WIDTH 450
+#define HEIGHT 650
 
 PendulumScene::PendulumScene(QObject *parent)
     :
       QGraphicsScene(XPOS, YPOS, WIDTH, HEIGHT, parent)
 {
-    //addRect(XPOS,YPOS,WIDTH,HEIGHT,QPen(Qt::black));
+    addRect(XPOS,YPOS,WIDTH,HEIGHT,QPen(Qt::black));
     toQtCoordinates = new ToQtCoordinates(
                 ToQtCoordinates::Type::MidPoint,WIDTH,HEIGHT);
+
+    int count =1;
+    for(int i = 0; i < 24; i++){
+        vectorOfOmegas.push_back((64-i)/60.0);
+        vectorOfLengths.push_back(100+20*i);
+
+        std::cout << " - i : " << count << " periodo: " << (64-i)/60.0 << "length: " << 100+20*i <<std::endl;
+        count++;
+    }
+
+    std::cout << " - vectorOfOmegas size: " << vectorOfOmegas.size() << std::endl;
+
     //1
     pendulum1 = new PendulumGraphicsItem();
     pendulum1->setCenterOfBall(
                 toQtCoordinates->convertToQtCoordinates(
                     QPointF(-L1*sin(initialTetha),altura - L1*cos(initialTetha))));
-    pendulum1->setRadius(15);
+    pendulum1->setRadius(20);
     pendulum1->setSize();
 
     addItem(pendulum1);
@@ -30,7 +43,7 @@ PendulumScene::PendulumScene(QObject *parent)
     pendulum2->setCenterOfBall(
                 toQtCoordinates->convertToQtCoordinates(
                     QPointF(-L2*sin(initialTetha),altura - L2*cos(initialTetha))));
-    pendulum2->setRadius(15);
+    pendulum2->setRadius(20);
     pendulum2->setSize();
 
     addItem(pendulum2);
@@ -124,6 +137,14 @@ PendulumScene::PendulumScene(QObject *parent)
     pendulum12->setSize();
 
     addItem(pendulum12);
+}
+
+void PendulumScene::mousePressEvent(QGraphicsSceneMouseEvent *mouseEvent)
+{
+    std::cout << "Scene position: " << mouseEvent->scenePos().x() << " , "  << mouseEvent->scenePos().y() << std::endl;
+    std::cout << "Scene: " << this->width() << " , "  << this->height() << std::endl;
+
+
 }
 
 void PendulumScene::onUpdate()
