@@ -9,6 +9,7 @@ class PendulumGraphicsItem : public QGraphicsItem
 {    
 public:
     PendulumGraphicsItem( QGraphicsItem *parent = nullptr );
+    PendulumGraphicsItem( QPointF centerOfBall, double radius, QGraphicsItem *parent = nullptr );
 
     void setCenterOfBall(QPointF centerOfBall);
     void setRadius(double radius);

@@ -16,6 +16,10 @@ public:
 public slots:
     void onUpdate();
 private:
+
+    const double PI = 3.141592;
+    const double g = 9.8182;
+
     PendulumGraphicsItem *pendulum1;
     PendulumGraphicsItem *pendulum2;
     PendulumGraphicsItem *pendulum3;
@@ -33,49 +37,50 @@ private:
     PendulumGraphicsItem *pendulum12;
     ToQtCoordinates *toQtCoordinates;
 
-    const double PI = 3.141592;
-
     double altura = 600;
-    double g = 9.8182;
 
-    double L1 = 300;
-    double L2 = 280;
-    double L3 = 260;
-    double L4 = 240;
-    double L5 = 220;
-    double L6 = 200;
-    double L7 = 180;
-    double L8 = 160;
-    double L9 = 140;
-    double L10 = 120;
-    double L11 = 100;
+    double L1 = 520;
+    double L2 = 480;
+    double L3 = 440;
+    double L4 = 400;
+    double L5 = 360;
+    double L6 = 320;
+    double L7 = 280;
+    double L8 = 240;
+    double L9 = 200;
+    double L10 = 160;
+    double L11 = 120;
     double L12 = 80;
 
-    double w1 = 2*PI/3;
-    double w2 = 2*PI/2.95;
-    double w3 = 2*PI/2.9;
+    double w1 = 2*PI/(60.0/15);
+    double w2 = 2*PI/(60.0/16);
+    double w3 = 2*PI/(60.0/17);
 
-    double w4 = 2*PI/2.85;
-    double w5 = 2*PI/2.8;
-    double w6 = 2*PI/2.75;
+    double w4 = 2*PI/(60.0/18);
+    double w5 = 2*PI/(60.0/19);
+    double w6 = 2*PI/(60.0/20);
 
-    double w7 = 2*PI/2.7;
-    double w8 = 2*PI/2.65;
-    double w9 = 2*PI/2.6;
+    double w7 = 2*PI/(60.0/21);
+    double w8 = 2*PI/(60.0/22);
+    double w9 = 2*PI/(60.0/23);
 
-    double w10 = 2*PI/2.55;
-    double w11 = 2*PI/2.5;
-    double w12 = 2*PI/2.45;
+    double w10 = 2*PI/(60.0/24);
+    double w11 = 2*PI/(60.0/25);
+    double w12 = 2*PI/(60.0/26);
 
     //variables
 
     std::vector<double> vectorOfLengths;
     std::vector<double> vectorOfOmegas;
+    std::vector<double> vectorOfThetas;
 
-    double initialTetha = 30*PI/180;
+    double initialTetha = 20*PI/180;
     double t = 0; //timeInMiliseconds
+    double maxNumOfCyclesPerMinute = 31;
+    double initialLength = 80;
+    double radius = 15;
 
-    std::shared_ptr<PendulumGraphicsItem> vectorOfPendulums;
+    std::vector<std::shared_ptr<PendulumGraphicsItem>> vectorOfPendulums;
 
 };
 

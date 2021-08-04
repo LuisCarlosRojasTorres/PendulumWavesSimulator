@@ -8,6 +8,15 @@ PendulumGraphicsItem::PendulumGraphicsItem( QGraphicsItem *parent)
 
 }
 
+PendulumGraphicsItem::PendulumGraphicsItem(QPointF centerOfBall, double radius, QGraphicsItem *parent)
+    :
+      centerOfBall(centerOfBall),
+      radius(radius),
+      QGraphicsItem(parent)
+{
+    this->setSize();
+}
+
 void PendulumGraphicsItem::setCenterOfBall(QPointF centerOfBall)
 {
     this->centerOfBall = centerOfBall;
