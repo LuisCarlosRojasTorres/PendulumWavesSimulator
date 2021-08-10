@@ -19,6 +19,11 @@ Widget::Widget(QWidget *parent)
 
     connect(mThread, &MyThread::already, mScene, &PendulumScene::onUpdate );
     mThread->start(10,MyThread::HighPriority);
+
+    ui->cB_colors->addItem(QString("Mono"));
+    ui->cB_colors->addItem(QString("Bi"));
+    ui->cB_colors->addItem(QString("Tri"));
+    ui->cB_colors->addItem(QString("Rainbow"));
 }
 
 Widget::~Widget()

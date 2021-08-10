@@ -20,21 +20,21 @@ private:
     const double PI = 3.141592;
     const double g = 9.8182;
 
-    PendulumGraphicsItem *pendulum1;
-    PendulumGraphicsItem *pendulum2;
-    PendulumGraphicsItem *pendulum3;
+//    PendulumGraphicsItem *pendulum1;
+//    PendulumGraphicsItem *pendulum2;
+//    PendulumGraphicsItem *pendulum3;
 
-    PendulumGraphicsItem *pendulum4;
-    PendulumGraphicsItem *pendulum5;
-    PendulumGraphicsItem *pendulum6;
+//    PendulumGraphicsItem *pendulum4;
+//    PendulumGraphicsItem *pendulum5;
+//    PendulumGraphicsItem *pendulum6;
 
-    PendulumGraphicsItem *pendulum7;
-    PendulumGraphicsItem *pendulum8;
-    PendulumGraphicsItem *pendulum9;
+//    PendulumGraphicsItem *pendulum7;
+//    PendulumGraphicsItem *pendulum8;
+//    PendulumGraphicsItem *pendulum9;
 
-    PendulumGraphicsItem *pendulum10;
-    PendulumGraphicsItem *pendulum11;
-    PendulumGraphicsItem *pendulum12;
+//    PendulumGraphicsItem *pendulum10;
+//    PendulumGraphicsItem *pendulum11;
+//    PendulumGraphicsItem *pendulum12;
     ToQtCoordinates *toQtCoordinates;
 
     double altura = 600;
@@ -76,7 +76,7 @@ private:
 
     double initialTetha = 20*PI/180;
     double t = 0; //timeInMiliseconds
-    double maxNumOfCyclesPerMinute = 31;
+    double maxNumOfCyclesPerMinute = 26;
     double initialLength = 80;
     double radius = 15;
 
