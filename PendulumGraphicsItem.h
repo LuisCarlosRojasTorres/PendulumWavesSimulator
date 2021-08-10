@@ -6,10 +6,22 @@
 #include <QSizeF>
 
 class PendulumGraphicsItem : public QGraphicsItem
-{    
+{
 public:
+
+    enum ColorOfBall{
+        Yellow,
+        Blue,
+        Red,
+        Green
+    };
+
     PendulumGraphicsItem( QGraphicsItem *parent = nullptr );
-    PendulumGraphicsItem( QPointF centerOfBall, double radius, QGraphicsItem *parent = nullptr );
+    PendulumGraphicsItem( QPointF centerOfBall, double radius,
+                          QGraphicsItem *parent = nullptr );
+    PendulumGraphicsItem( QPointF centerOfBall, double radius,
+                          ColorOfBall colorOfBall,
+                          QGraphicsItem *parent = nullptr );
 
     void setCenterOfBall(QPointF centerOfBall);
     void setRadius(double radius);
@@ -28,6 +40,8 @@ private:
     double radius;
     QPointF centerOfBall;
     QSizeF pendulumGraphicsItemSize;
+
+    ColorOfBall colorOfBall = ColorOfBall::Yellow;
 };
 
 #endif // PENDULUMGRAPHICSITEM_H

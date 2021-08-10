@@ -18,6 +18,9 @@ public:
     Widget(QWidget *parent = nullptr);
     ~Widget();
 
+public slots:
+    void setPendulumColors(int index);
+
 private:
     Ui::Widget *ui;
 

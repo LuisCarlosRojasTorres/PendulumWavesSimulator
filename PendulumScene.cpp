@@ -37,11 +37,10 @@ PendulumScene::PendulumScene(QObject *parent)
 
         addItem(vectorOfPendulums.back().get());
 
-        std::cout << " - i : " << count << " periodo: " << 60.0/(maxNumOfCyclesPerMinute-i) << "  length: " << vectorOfLengths.back() <<std::endl;
         count++;
     }
 
-    std::cout << " - vectorOfOmegas size: " << vectorOfOmegas.size() << std::endl;
+
 }
 
 void PendulumScene::mousePressEvent(QGraphicsSceneMouseEvent *mouseEvent)
@@ -58,11 +57,9 @@ void PendulumScene::onUpdate()
 
     t +=0.05;
 
-    std::cout << " - t: " << t << std::endl;
     for(int i = 0; i < vectorOfLengths.size(); i++){
 
         vectorOfThetas.push_back(initialTetha*cos(vectorOfOmegas.at(i)*t + PI));
-        std::cout << "   >> i : " << i << "  tetha(t):  " << vectorOfThetas.at(i) <<std::endl;
 
         vectorOfPendulums.at(i)->setCenterOfBall(
                     toQtCoordinates->convertToQtCoordinates(

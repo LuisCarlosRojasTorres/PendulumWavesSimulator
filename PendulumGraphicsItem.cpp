@@ -12,6 +12,18 @@ PendulumGraphicsItem::PendulumGraphicsItem(QPointF centerOfBall, double radius, 
     :
       centerOfBall(centerOfBall),
       radius(radius),
+      colorOfBall(ColorOfBall::Yellow),
+      QGraphicsItem(parent)
+{
+    this->setSize();
+}
+
+PendulumGraphicsItem::PendulumGraphicsItem(QPointF centerOfBall, double radius,
+                                           ColorOfBall colorOfBall, QGraphicsItem *parent)
+    :
+      centerOfBall(centerOfBall),
+      radius(radius),
+      colorOfBall(colorOfBall),
       QGraphicsItem(parent)
 {
     this->setSize();
@@ -58,7 +70,21 @@ void PendulumGraphicsItem::paint(QPainter *painter, const QStyleOptionGraphicsIt
     (void) option;
     (void) widget;
 
-    painter->setBrush(Qt::yellow);
+    switch (colorOfBall) {
+    case ColorOfBall::Blue :
+        painter->setBrush(Qt::yellow);
+        break;
+    case ColorOfBall::Green :
+        painter->setBrush(Qt::green);
+        break;
+    case ColorOfBall::Red :
+        painter->setBrush(Qt::red);
+        break;
+    case ColorOfBall::Yellow :
+        painter->setBrush(Qt::yellow);
+        break;
+    }
+
     painter->setPen(Qt::black);
     painter->drawEllipse(centerOfBall,radius,radius);
 }
