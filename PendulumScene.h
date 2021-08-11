@@ -15,6 +15,7 @@ public:
     void mousePressEvent(QGraphicsSceneMouseEvent *mouseEvent);
 public slots:
     void onUpdate();
+    void setPendulumColors(int index);
 private:
 
     const double PI = 3.141592;

@@ -5,16 +5,16 @@
 #include <QPointF>
 #include <QSizeF>
 
+enum ColorOfBall{
+    Yellow,
+    Blue,
+    Red,
+    Green
+};
+
 class PendulumGraphicsItem : public QGraphicsItem
 {
-public:
-
-    enum ColorOfBall{
-        Yellow,
-        Blue,
-        Red,
-        Green
-    };
+public:    
 
     PendulumGraphicsItem( QGraphicsItem *parent = nullptr );
     PendulumGraphicsItem( QPointF centerOfBall, double radius,
@@ -26,10 +26,14 @@ public:
     void setCenterOfBall(QPointF centerOfBall);
     void setRadius(double radius);
     void setSize();
+    void setIndex(int index);
 
     QPointF getCenterOfBall() const;
     double getRadius() const;
     QSizeF getSize() const;
+    int getIndex() const;
+
+    void setColor(ColorOfBall colorBall);
 
 protected:
     QRectF boundingRect() const;
@@ -37,6 +41,7 @@ protected:
                QWidget *widget = 0);
 
 private:
+    int index = 0;
     double radius;
     QPointF centerOfBall;
     QSizeF pendulumGraphicsItemSize;

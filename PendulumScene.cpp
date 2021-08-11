@@ -39,16 +39,12 @@ PendulumScene::PendulumScene(QObject *parent)
 
         count++;
     }
-
-
 }
 
 void PendulumScene::mousePressEvent(QGraphicsSceneMouseEvent *mouseEvent)
 {
     std::cout << "Scene position: " << mouseEvent->scenePos().x() << " , "  << mouseEvent->scenePos().y() << std::endl;
     std::cout << "Scene: " << this->width() << " , "  << this->height() << std::endl;
-
-
 }
 
 void PendulumScene::onUpdate()
@@ -68,8 +64,42 @@ void PendulumScene::onUpdate()
                             altura - vectorOfLengths.at(i)*cos(vectorOfThetas.at(i))
                             )
                         )
-                    );
+                    );        
     }
 
+    update();
+}
+
+void PendulumScene::setPendulumColors(int index)
+{
+    for(int i = 0; i < vectorOfPendulums.size(); i++){
+
+        switch (index) {
+        case 0:
+            vectorOfPendulums.at(i)->setColor(ColorOfBall::Yellow);
+            break;
+        case 1:
+            if(i%2 == 0){
+                vectorOfPendulums.at(i)->setColor(ColorOfBall::Red);
+            }
+            else{
+                vectorOfPendulums.at(i)->setColor(ColorOfBall::Blue);
+            }
+            break;
+        case 2:
+            if(i%3 == 0){
+                vectorOfPendulums.at(i)->setColor(ColorOfBall::Red);
+            }
+            else if(i%3 == 1){
+                vectorOfPendulums.at(i)->setColor(ColorOfBall::Blue);
+            }
+            else{
+                vectorOfPendulums.at(i)->setColor(ColorOfBall::Green);
+            }
+            break;
+        case 3:
+            break;
+        }
+    }
     update();
 }

@@ -4,7 +4,7 @@
 #include "PendulumScene.h"
 #include "MyThread.h"
 
-
+#include <iostream>
 
 Widget::Widget(QWidget *parent)
     : QWidget(parent)
@@ -19,16 +19,16 @@ Widget::Widget(QWidget *parent)
 
     //layout()->setMargin(0);
 
-    connect(mThread, &MyThread::already, mScene, &PendulumScene::onUpdate );
-    mThread->start(10,MyThread::HighPriority);
-
     ui->cB_colors->addItem(QString("Mono-Yellow"));
     ui->cB_colors->addItem(QString("Bi"));
     ui->cB_colors->addItem(QString("Tri"));
     ui->cB_colors->addItem(QString("Rainbow"));
 
     connect(ui->cB_colors, QOverload<int>::of(&QComboBox::currentIndexChanged),
-            this, &Widget::setPendulumColors);
+            mScene, &PendulumScene::setPendulumColors);
+
+    connect(ui->pB_start, &QPushButton::clicked,
+            this, &Widget::start);
 }
 
 Widget::~Widget()
@@ -36,8 +36,12 @@ Widget::~Widget()
     delete ui;
 }
 
-void Widget::setPendulumColors(int index)
+void Widget::start()
 {
-
+    if(!mThread->getIsRunning()){
+        mThread->start(10,MyThread::HighPriority);
+        connect(mThread, &MyThread::already, mScene, &PendulumScene::onUpdate );
+    }else{
+        std::cout<<"Is already running!" << std::endl;
+    }
 }
-

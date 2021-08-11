@@ -19,7 +19,7 @@ public:
     ~Widget();
 
 public slots:
-    void setPendulumColors(int index);
+    void start();
 
 private:
     Ui::Widget *ui;

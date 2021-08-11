@@ -54,9 +54,24 @@ QSizeF PendulumGraphicsItem::getSize() const
     return this->pendulumGraphicsItemSize;
 }
 
+int PendulumGraphicsItem::getIndex() const
+{
+    return this->index;
+}
+
+void PendulumGraphicsItem::setColor(ColorOfBall colorBall)
+{
+    this->colorOfBall = colorBall;
+}
+
 void PendulumGraphicsItem::setSize()
 {
     this->pendulumGraphicsItemSize = QSize(radius,radius);
+}
+
+void PendulumGraphicsItem::setIndex(int index)
+{
+    this->index = index;
 }
 
 QRectF PendulumGraphicsItem::boundingRect() const
