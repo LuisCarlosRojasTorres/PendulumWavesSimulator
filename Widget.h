@@ -20,6 +20,7 @@ public:
 
 public slots:
     void start();
+    void stop();
 
 private:
     Ui::Widget *ui;
@@ -27,7 +28,5 @@ private:
     PendulumScene *mScene;
         MyThread *mThread;
 
-signals:
-        void update();
 };
 #endif // WIDGET_H

@@ -1,4 +1,5 @@
 #include "MyThread.h"
+#include <iostream>
 
 MyThread::MyThread(QObject *parent)
     :
@@ -24,6 +25,12 @@ void MyThread::start(int msec, Priority p)
 bool MyThread::getIsRunning() const
 {
     return isRunning;
+}
+
+void MyThread::setIsRunning(bool value)
+{
+    isRunning = value;
+    std::cout<<"MyThread::setIsRunningt: " << value <<std::endl;
 }
 
 int MyThread::getMsec() const

@@ -13,6 +13,9 @@ class PendulumScene : public QGraphicsScene
 public:
     PendulumScene(QObject *parent);
     void mousePressEvent(QGraphicsSceneMouseEvent *mouseEvent);
+
+    void setPendulumSceneToTimeZero();
+
 public slots:
     void onUpdate();
     void setPendulumColors(int index);

@@ -12,6 +12,7 @@ public:
     ~MyThread();
     void start(int msec, Priority p);
     bool getIsRunning() const;
+    void setIsRunning(bool value);
     int getMsec() const;
 
 signals:

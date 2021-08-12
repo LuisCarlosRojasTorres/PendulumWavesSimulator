@@ -47,11 +47,15 @@ void PendulumScene::mousePressEvent(QGraphicsSceneMouseEvent *mouseEvent)
     std::cout << "Scene: " << this->width() << " , "  << this->height() << std::endl;
 }
 
+void PendulumScene::setPendulumSceneToTimeZero()
+{
+    t = 0;
+    onUpdate();
+}
+
 void PendulumScene::onUpdate()
 {
     vectorOfThetas.clear();
-
-    t +=0.05;
 
     for(int i = 0; i < vectorOfLengths.size(); i++){
 
@@ -67,6 +71,7 @@ void PendulumScene::onUpdate()
                     );        
     }
 
+    t +=0.05;
     update();
 }
 
