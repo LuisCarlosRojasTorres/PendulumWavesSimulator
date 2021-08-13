@@ -26,7 +26,10 @@ private:
     Ui::Widget *ui;
 
     PendulumScene *mScene;
-        MyThread *mThread;
+    MyThread *mThread;
+
+    double timeIncrementMillisecond = 10;
+    double timeIncrement = timeIncrementMillisecond/1000;
 
 };
 #endif // WIDGET_H

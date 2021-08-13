@@ -19,7 +19,7 @@ PendulumScene::PendulumScene(QObject *parent)
                 ToQtCoordinates::Type::MidPoint,WIDTH,HEIGHT);
 
     int count =1;
-    for(int i = 1; i <= 15; i++){
+    for(int i = 1; i <= numOfPendulums; i++){
         vectorOfOmegas.push_back(2*PI/(60.0/(maxNumOfCyclesPerMinute-i)));
         vectorOfLengths.push_back(initialLength+2*radius*(i-1));
 
@@ -49,29 +49,18 @@ void PendulumScene::mousePressEvent(QGraphicsSceneMouseEvent *mouseEvent)
 
 void PendulumScene::setPendulumSceneToTimeZero()
 {
-    t = 0;
-    onUpdate();
+    currentTime = 0;
+    vectorOfThetas.clear();
+    setPendulumnPositionsAtTimet(currentTime);
+    update();
 }
 
 void PendulumScene::onUpdate()
 {
     vectorOfThetas.clear();
+    setPendulumnPositionsAtTimet(currentTime);
 
-    for(int i = 0; i < vectorOfLengths.size(); i++){
-
-        vectorOfThetas.push_back(initialTetha*cos(vectorOfOmegas.at(i)*t + PI));
-
-        vectorOfPendulums.at(i)->setCenterOfBall(
-                    toQtCoordinates->convertToQtCoordinates(
-                        QPointF(
-                            vectorOfLengths.at(i)*sin(vectorOfThetas.at(i)),
-                            altura - vectorOfLengths.at(i)*cos(vectorOfThetas.at(i))
-                            )
-                        )
-                    );        
-    }
-
-    t +=0.05;
+    currentTime += timeIncrement;
     update();
 }
 
@@ -108,3 +97,36 @@ void PendulumScene::setPendulumColors(int index)
     }
     update();
 }
+
+void PendulumScene::setInitialTetha(double initialTetha)
+{
+    this->initialTetha = initialTetha*PI/180;
+    vectorOfThetas.clear();
+
+    setPendulumnPositionsAtTimet(currentTime);
+    update();
+}
+
+void PendulumScene::setPendulumnPositionsAtTimet(double currentTime)
+{
+    for(int i = 0; i < numOfPendulums; i++){
+
+        vectorOfThetas.push_back(initialTetha*cos(vectorOfOmegas.at(i)*currentTime + PI));
+
+        vectorOfPendulums.at(i)->setCenterOfBall(
+                    toQtCoordinates->convertToQtCoordinates(
+                        QPointF(
+                            vectorOfLengths.at(i)*sin(vectorOfThetas.at(i)),
+                            altura - vectorOfLengths.at(i)*cos(vectorOfThetas.at(i))
+                            )
+                        )
+                    );
+    }
+}
+
+void PendulumScene::setTimeIncrement(double timeIncrement)
+{
+    this->timeIncrement = timeIncrement;
+}
+
+

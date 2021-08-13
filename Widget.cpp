@@ -30,6 +30,9 @@ Widget::Widget(QWidget *parent)
 
     connect(ui->pB_stop, &QPushButton::clicked,
             this, &Widget::stop);
+
+    connect(ui->sB_initialAngle, QOverload<int>::of(&QSpinBox::valueChanged),
+            mScene, &PendulumScene::setInitialTetha);
 }
 
 Widget::~Widget()
@@ -41,7 +44,7 @@ void Widget::start()
 {
     if(!mThread->getIsRunning()){
         std::cout<<"Widget::start: " << std::endl;
-        mThread->start(10,MyThread::HighPriority);
+        mThread->start(timeIncrementMillisecond,MyThread::HighPriority);
         connect(mThread, &MyThread::already, mScene, &PendulumScene::onUpdate );
     }else{
         mThread->setIsRunning(true);
